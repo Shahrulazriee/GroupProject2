@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Admin Page </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <table class="table table-dark">
+            <thead>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>Date & Time</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+    <script type="module">
+
+        var name = 0;
+        var tbody = document.getElementById('tbody');
+
+        function addItemToTable(user, userID, email, currentTime, lat, longi) {
+        let trow = document.createElement("tr");
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        let td4 = document.createElement('td');
+        let td5 = document.createElement('td');
+        let td6 = document.createElement('td');
+       
+
+        td2.innerHTML = user;
+        td1.innerHTML = userID;
+        td3.innerHTML = email;
+        td4.innerHTML = currentTime;
+        td5.innerHTML = lat;
+        td6.innerHTML = longi;
+      
+
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+
+        tbody.appendChild(trow);
+        }
+
+        function AddAllItemsToTable(userName){
+        name=0;
+        tbody.innerHTML="";
+        userName.forEach(element => {
+            addItemToTable(element.user,element.userID, element.email, element.currentTime);
+        });
+
+        }
+
+         // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyBNXES3jAnCtBFviHJ3tgn2kcjdVnPW4jQ",
+                authDomain: "groupproject2-3beab.firebaseapp.com",
+                databaseURL: "https://groupproject2-3beab-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "groupproject2-3beab",
+                storageBucket: "groupproject2-3beab.appspot.com",
+                messagingSenderId: "993948386207",
+                appId: "1:993948386207:web:03a4353aac3fba7148b3aa"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+
+        const dbRef = ref(getDatabase(app));
+        get(child(dbRef, 'userName/')).then((snapshot) => {
+         if (snapshot.exists()) {
+             console.log(snapshot.val());
+         } else {
+         console.log("No data available");
+         }
+        }).catch((error) => {
+             console.error(error);
+        });
+
+        import {getDatabase, ref, child, get } 
+        from "https://www.gstatic.com/firebasejs/9.9.0/firebase-database.js";   
+
+        const db = getDatabase();
+
+
+            function GetAllDataOnce(){
+            const dbref = ref(db);
+
+            get(child(dbRef,"userName"))
+            .then((snapshot)=>{
+
+            var students = [];
+
+            snapshot.forEach(childSnapShot => {
+                students.push(childSnapShot.val());
+            });
+
+            AddAllItemsToTable(students);
+        });
+        }
+
+        function GetAllDataRealtime(){
+            const dbref = ref(db,"userName");
+
+            onValue(dbRef,(snapshot)=> {
+
+                var students = [];
+
+            snapshot.forEach(childSnapShot => {
+                students.push(childSnapShot.val());
+            });
+
+                AddAllItemsToTable(students);
+
+
+            })
+            
+        }
+
+        window.onload = GetAllDataOnce;
+
+    </script>
+</body>
+
+</html>
