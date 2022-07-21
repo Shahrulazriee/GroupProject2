@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView Name;
     DatabaseReference databaseUsers;
 
-    //for map
+    //for current users location
     private static final int REQUEST_LOCATION = 1;
     Button btnGetLocation;
     TextView showLocation;
@@ -55,22 +55,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         databaseUsers = FirebaseDatabase.getInstance("https://groupproject2-3beab-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("userName");
 
-        //to access map permission
-//        ActivityCompat.requestPermissions( this,
-//                new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-//        showLocation = findViewById(R.id.showLocation);
-//        btnGetLocation = findViewById(R.id.btnGetLocation);
-//        btnGetLocation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                LocationManager nManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-//                    OnGPS();
-//                } else {
-//                    getLocation();
-//                }
-//            }
-//        });
 
         //to display user name fetch from firebase realtime database
         auth = FirebaseAuth.getInstance();
@@ -92,26 +76,42 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "error occurred", Toast.LENGTH_LONG);
             }
         });
+
+        //ask permission for location
+//        ActivityCompat.requestPermissions( this,
+//                new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+//        showLocation = findViewById(R.id.showLocation);
+//        btnGetLocation = findViewById(R.id.btnGetLocation);
+//        btnGetLocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LocationManager nManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+//                    OnGPS();
+//                } else {
+//                    getLocation();
+//                }
+//            }
+//        });
     }
 
-    private void OnGPS() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Enable GPS").setCancelable(false).setPositiveButton("Yes", new  DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-            }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        final AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-//    public void getLocation() {
+//    private void OnGPS() {
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("Enable GPS").setCancelable(false).setPositiveButton("Yes", new  DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+//            }
+//        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        final AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+//    }
+//    private void getLocation() {
 //        if (ActivityCompat.checkSelfPermission(
 //                ProfileActivity.this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
 //                ProfileActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -123,25 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 //                double longi = locationGPS.getLongitude();
 //                latitude = String.valueOf(lat);
 //                longitude = String.valueOf(longi);
-////                showLocation.setText("Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
-//
-//                databaseUsers.addValueEventListener(new ValueEventListener() {
-//                    auth = FirebaseAuth.getInstance();
-//                    String email = auth.getCurrentUser().getEmail();
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for (DataSnapshot keyID : snapshot.getChildren()) {
-//                            if (keyID.child("email").getValue().equals(email)) {
-//                                //collect altitude and longitude to the databse
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(getApplicationContext(), "error occurred", Toast.LENGTH_LONG);
-//                    }
-//                });
+//                showLocation.setText("Your Location: " + "\n" + "Latitude: " + latitude + "\n" + "Longitude: " + longitude);
 //            } else {
 //                Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
 //            }

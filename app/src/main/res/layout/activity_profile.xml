@@ -6,24 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/showLocation"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:hint="Location"-->
-<!--        android:textSize="24sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textView2"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <TextView
+        android:id="@+id/showLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:hint="Location"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/mapbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGetLocation" />
 
-<!--    <Button-->
-<!--        android:id="@+id/btnGetLocation"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Get Location"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <Button
+        android:id="@+id/btnGetLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:text="Get Location"
+        app:layout_constraintBottom_toTopOf="@+id/showLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button4"
@@ -31,53 +35,56 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginEnd="34dp"
         android:layout_marginBottom="41dp"
         android:onClick="signout"
         android:text="LOG OUT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/aboutbutton"
         app:layout_constraintTop_toBottomOf="@+id/aboutbutton" />
 
     <Button
         android:id="@+id/mapbutton"
-        android:layout_width="335dp"
+        android:layout_width="168dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="26dp"
         android:background="@android:color/black"
         android:onClick="openMap"
         android:text="Hospital Location"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/button6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/showLocation" />
 
     <Button
         android:id="@+id/aboutbutton"
-        android:layout_width="335dp"
+        android:layout_width="168dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp"
+        android:layout_marginBottom="39dp"
         android:onClick="openAbout"
         android:text="About Developer"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="331dp"
+        android:layout_width="168dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="30dp"
         android:onClick="openProfile"
         android:text="Profile"
         app:layout_constraintBottom_toTopOf="@+id/aboutbutton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapbutton" />
 
@@ -85,9 +92,9 @@
         android:id="@+id/textView2"
         android:layout_width="120dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="77dp"
         android:text="Welcome"
-        app:layout_constraintBottom_toTopOf="@+id/mapbutton"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
